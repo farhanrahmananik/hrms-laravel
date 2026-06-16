@@ -8,6 +8,10 @@ The goal of this project is to build a complete HRMS application from scratch us
 
 This project is being developed as a portfolio-ready application with clean architecture, proper database design, maintainable code structure, and production-level development practices.
 
+## Documentation
+
+- [Database ERD](docs/database/erd.md)
+
 ## Technology Stack
 
 * PHP 8.x
