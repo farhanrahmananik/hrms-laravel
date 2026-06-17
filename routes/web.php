@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\AttendanceController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\DesignationController;
 use App\Http\Controllers\Admin\EmployeeController;
-use App\Http\Controllers\Admin\AttendanceController;
+use App\Http\Controllers\Admin\LeaveRequestController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -164,4 +165,36 @@ Route::middleware('auth')
         Route::delete('/attendance/{attendance}', [AttendanceController::class, 'destroy'])
             ->middleware('permission:attendance.delete')
             ->name('attendance.destroy');
+
+        Route::get('/leaves', [LeaveRequestController::class, 'index'])
+            ->middleware('permission:leave.view')
+            ->name('leaves.index');
+
+        Route::get('/leaves/create', [LeaveRequestController::class, 'create'])
+            ->middleware('permission:leave.create')
+            ->name('leaves.create');
+
+        Route::post('/leaves', [LeaveRequestController::class, 'store'])
+            ->middleware('permission:leave.create')
+            ->name('leaves.store');
+
+        Route::get('/leaves/{leaveRequest}/edit', [LeaveRequestController::class, 'edit'])
+            ->middleware('permission:leave.view')
+            ->name('leaves.edit');
+
+        Route::put('/leaves/{leaveRequest}', [LeaveRequestController::class, 'update'])
+            ->middleware('permission:leave.view')
+            ->name('leaves.update');
+
+        Route::delete('/leaves/{leaveRequest}', [LeaveRequestController::class, 'destroy'])
+            ->middleware('permission:leave.delete')
+            ->name('leaves.destroy');
+
+        Route::patch('/leaves/{leaveRequest}/approve', [LeaveRequestController::class, 'approve'])
+            ->middleware('permission:leave.approve')
+            ->name('leaves.approve');
+
+        Route::patch('/leaves/{leaveRequest}/reject', [LeaveRequestController::class, 'reject'])
+            ->middleware('permission:leave.reject')
+            ->name('leaves.reject');
     });

@@ -11,7 +11,7 @@
         ['label' => 'Departments', 'permission' => 'department.view', 'href' => Illuminate\Support\Facades\Route::has('admin.departments.index') ? route('admin.departments.index') : '#', 'icon' => 'bi-diagram-3', 'active' => request()->routeIs('admin.departments.*')],
         ['label' => 'Designations', 'permission' => 'designation.view', 'href' => Illuminate\Support\Facades\Route::has('admin.designations.index') ? route('admin.designations.index') : '#', 'icon' => 'bi-award', 'active' => request()->routeIs('admin.designations.*')],
         ['label' => 'Attendance', 'permission' => 'attendance.view', 'href' => Illuminate\Support\Facades\Route::has('admin.attendance.index') ? route('admin.attendance.index') : '#', 'icon' => 'bi-calendar-check', 'active' => request()->routeIs('admin.attendance.*')],
-        ['label' => 'Leave Management', 'permission' => 'leave.view', 'href' => '#', 'icon' => 'bi-calendar2-week', 'active' => false],
+        ['label' => 'Leave Management', 'permission' => 'leave.view', 'href' => Illuminate\Support\Facades\Route::has('admin.leaves.index') ? route('admin.leaves.index') : '#', 'icon' => 'bi-calendar2-week', 'active' => request()->routeIs('admin.leaves.*')],
         ['label' => 'Payroll', 'permission' => 'payroll.view', 'href' => '#', 'icon' => 'bi-cash-stack', 'active' => false],
         ['label' => 'Reports', 'permission' => 'report.view', 'href' => '#', 'icon' => 'bi-bar-chart', 'active' => false],
     ];
