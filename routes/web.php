@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -64,4 +65,28 @@ Route::middleware('auth')
         Route::get('/permissions', [PermissionController::class, 'index'])
             ->middleware('permission:permission.view')
             ->name('permissions.index');
+
+        Route::get('/departments', [DepartmentController::class, 'index'])
+            ->middleware('permission:department.view')
+            ->name('departments.index');
+
+        Route::get('/departments/create', [DepartmentController::class, 'create'])
+            ->middleware('permission:department.create')
+            ->name('departments.create');
+
+        Route::post('/departments', [DepartmentController::class, 'store'])
+            ->middleware('permission:department.create')
+            ->name('departments.store');
+
+        Route::get('/departments/{department}/edit', [DepartmentController::class, 'edit'])
+            ->middleware('permission:department.update')
+            ->name('departments.edit');
+
+        Route::put('/departments/{department}', [DepartmentController::class, 'update'])
+            ->middleware('permission:department.update')
+            ->name('departments.update');
+
+        Route::delete('/departments/{department}', [DepartmentController::class, 'destroy'])
+            ->middleware('permission:department.delete')
+            ->name('departments.destroy');
     });
