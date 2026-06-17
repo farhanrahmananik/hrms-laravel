@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -22,3 +24,44 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'permission:dashboard.view'])
     ->name('dashboard');
+
+Route::middleware('auth')
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/roles', [RoleController::class, 'index'])
+            ->middleware('permission:role.view')
+            ->name('roles.index');
+
+        Route::get('/roles/create', [RoleController::class, 'create'])
+            ->middleware('permission:role.create')
+            ->name('roles.create');
+
+        Route::post('/roles', [RoleController::class, 'store'])
+            ->middleware('permission:role.create')
+            ->name('roles.store');
+
+        Route::get('/roles/{role}/edit', [RoleController::class, 'edit'])
+            ->middleware('permission:role.update')
+            ->name('roles.edit');
+
+        Route::put('/roles/{role}', [RoleController::class, 'update'])
+            ->middleware('permission:role.update')
+            ->name('roles.update');
+
+        Route::delete('/roles/{role}', [RoleController::class, 'destroy'])
+            ->middleware('permission:role.delete')
+            ->name('roles.destroy');
+
+        Route::get('/roles/{role}/permissions', [RoleController::class, 'editPermissions'])
+            ->middleware('permission:permission.assign')
+            ->name('roles.permissions.edit');
+
+        Route::put('/roles/{role}/permissions', [RoleController::class, 'updatePermissions'])
+            ->middleware('permission:permission.assign')
+            ->name('roles.permissions.update');
+
+        Route::get('/permissions', [PermissionController::class, 'index'])
+            ->middleware('permission:permission.view')
+            ->name('permissions.index');
+    });

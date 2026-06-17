@@ -5,8 +5,8 @@
     $menuItems = [
         ['label' => 'Dashboard', 'permission' => 'dashboard.view', 'href' => route('dashboard'), 'icon' => 'bi-speedometer2', 'active' => request()->routeIs('dashboard')],
         ['label' => 'User Management', 'permission' => 'user.view', 'href' => '#', 'icon' => 'bi-people', 'active' => false],
-        ['label' => 'Roles', 'permission' => 'role.view', 'href' => '#', 'icon' => 'bi-person-badge', 'active' => false],
-        ['label' => 'Permissions', 'permission' => 'permission.view', 'href' => '#', 'icon' => 'bi-shield-lock', 'active' => false],
+        ['label' => 'Roles', 'permission' => 'role.view', 'href' => route('admin.roles.index'), 'icon' => 'bi-person-badge', 'active' => request()->routeIs('admin.roles.*')],
+        ['label' => 'Permissions', 'permission' => 'permission.view', 'href' => route('admin.permissions.index'), 'icon' => 'bi-shield-lock', 'active' => request()->routeIs('admin.permissions.*')],
         ['label' => 'Employees', 'permission' => 'employee.view', 'href' => '#', 'icon' => 'bi-person-vcard', 'active' => false],
         ['label' => 'Departments', 'permission' => 'department.view', 'href' => '#', 'icon' => 'bi-diagram-3', 'active' => false],
         ['label' => 'Designations', 'permission' => 'designation.view', 'href' => '#', 'icon' => 'bi-award', 'active' => false],
