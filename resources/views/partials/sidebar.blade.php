@@ -7,7 +7,7 @@
         ['label' => 'User Management', 'permission' => 'user.view', 'href' => '#', 'icon' => 'bi-people', 'active' => false],
         ['label' => 'Roles', 'permission' => 'role.view', 'href' => route('admin.roles.index'), 'icon' => 'bi-person-badge', 'active' => request()->routeIs('admin.roles.*')],
         ['label' => 'Permissions', 'permission' => 'permission.view', 'href' => route('admin.permissions.index'), 'icon' => 'bi-shield-lock', 'active' => request()->routeIs('admin.permissions.*')],
-        ['label' => 'Employees', 'permission' => 'employee.view', 'href' => '#', 'icon' => 'bi-person-vcard', 'active' => false],
+        ['label' => 'Employees', 'permission' => 'employee.view', 'href' => Illuminate\Support\Facades\Route::has('admin.employees.index') ? route('admin.employees.index') : '#', 'icon' => 'bi-person-vcard', 'active' => request()->routeIs('admin.employees.*')],
         ['label' => 'Departments', 'permission' => 'department.view', 'href' => Illuminate\Support\Facades\Route::has('admin.departments.index') ? route('admin.departments.index') : '#', 'icon' => 'bi-diagram-3', 'active' => request()->routeIs('admin.departments.*')],
         ['label' => 'Designations', 'permission' => 'designation.view', 'href' => Illuminate\Support\Facades\Route::has('admin.designations.index') ? route('admin.designations.index') : '#', 'icon' => 'bi-award', 'active' => request()->routeIs('admin.designations.*')],
         ['label' => 'Attendance', 'permission' => 'attendance.view', 'href' => '#', 'icon' => 'bi-calendar-check', 'active' => false],

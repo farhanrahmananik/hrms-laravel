@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\DesignationController;
+use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -114,4 +115,28 @@ Route::middleware('auth')
         Route::delete('/designations/{designation}', [DesignationController::class, 'destroy'])
             ->middleware('permission:designation.delete')
             ->name('designations.destroy');
+
+        Route::get('/employees', [EmployeeController::class, 'index'])
+            ->middleware('permission:employee.view')
+            ->name('employees.index');
+
+        Route::get('/employees/create', [EmployeeController::class, 'create'])
+            ->middleware('permission:employee.create')
+            ->name('employees.create');
+
+        Route::post('/employees', [EmployeeController::class, 'store'])
+            ->middleware('permission:employee.create')
+            ->name('employees.store');
+
+        Route::get('/employees/{employee}/edit', [EmployeeController::class, 'edit'])
+            ->middleware('permission:employee.update')
+            ->name('employees.edit');
+
+        Route::put('/employees/{employee}', [EmployeeController::class, 'update'])
+            ->middleware('permission:employee.update')
+            ->name('employees.update');
+
+        Route::delete('/employees/{employee}', [EmployeeController::class, 'destroy'])
+            ->middleware('permission:employee.delete')
+            ->name('employees.destroy');
     });
