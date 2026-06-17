@@ -11,6 +11,7 @@ This project is being developed as a portfolio-ready application with clean arch
 ## Documentation
 
 - [Database ERD](docs/database/erd.md)
+- [Authentication & Authorization](docs/authentication-authorization.md)
 
 ## Technology Stack
 
