@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\DesignationController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\LeaveRequestController;
+use App\Http\Controllers\Admin\PayrollController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -197,4 +198,28 @@ Route::middleware('auth')
         Route::patch('/leaves/{leaveRequest}/reject', [LeaveRequestController::class, 'reject'])
             ->middleware('permission:leave.reject')
             ->name('leaves.reject');
+
+        Route::get('/payrolls', [PayrollController::class, 'index'])
+            ->middleware('permission:payroll.view')
+            ->name('payrolls.index');
+
+        Route::get('/payrolls/create', [PayrollController::class, 'create'])
+            ->middleware('permission:payroll.create')
+            ->name('payrolls.create');
+
+        Route::post('/payrolls', [PayrollController::class, 'store'])
+            ->middleware('permission:payroll.create')
+            ->name('payrolls.store');
+
+        Route::get('/payrolls/{payroll}/edit', [PayrollController::class, 'edit'])
+            ->middleware('permission:payroll.update')
+            ->name('payrolls.edit');
+
+        Route::put('/payrolls/{payroll}', [PayrollController::class, 'update'])
+            ->middleware('permission:payroll.update')
+            ->name('payrolls.update');
+
+        Route::delete('/payrolls/{payroll}', [PayrollController::class, 'destroy'])
+            ->middleware('permission:payroll.delete')
+            ->name('payrolls.destroy');
     });
