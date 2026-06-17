@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DepartmentController;
+use App\Http\Controllers\Admin\DesignationController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -89,4 +90,28 @@ Route::middleware('auth')
         Route::delete('/departments/{department}', [DepartmentController::class, 'destroy'])
             ->middleware('permission:department.delete')
             ->name('departments.destroy');
+
+        Route::get('/designations', [DesignationController::class, 'index'])
+            ->middleware('permission:designation.view')
+            ->name('designations.index');
+
+        Route::get('/designations/create', [DesignationController::class, 'create'])
+            ->middleware('permission:designation.create')
+            ->name('designations.create');
+
+        Route::post('/designations', [DesignationController::class, 'store'])
+            ->middleware('permission:designation.create')
+            ->name('designations.store');
+
+        Route::get('/designations/{designation}/edit', [DesignationController::class, 'edit'])
+            ->middleware('permission:designation.update')
+            ->name('designations.edit');
+
+        Route::put('/designations/{designation}', [DesignationController::class, 'update'])
+            ->middleware('permission:designation.update')
+            ->name('designations.update');
+
+        Route::delete('/designations/{designation}', [DesignationController::class, 'destroy'])
+            ->middleware('permission:designation.delete')
+            ->name('designations.destroy');
     });

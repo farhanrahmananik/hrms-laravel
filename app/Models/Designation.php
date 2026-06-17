@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Department extends Model
+class Designation extends Model
 {
     use SoftDeletes;
 
@@ -16,14 +16,15 @@ class Department extends Model
      * @var list<string>
      */
     protected $fillable = [
+        'department_id',
         'name',
         'code',
         'description',
         'status',
     ];
 
-    public function designations(): HasMany
+    public function department(): BelongsTo
     {
-        return $this->hasMany(Designation::class);
+        return $this->belongsTo(Department::class);
     }
 }
