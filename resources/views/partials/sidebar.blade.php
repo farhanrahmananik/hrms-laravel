@@ -10,7 +10,7 @@
         ['label' => 'Employees', 'permission' => 'employee.view', 'href' => Illuminate\Support\Facades\Route::has('admin.employees.index') ? route('admin.employees.index') : '#', 'icon' => 'bi-person-vcard', 'active' => request()->routeIs('admin.employees.*')],
         ['label' => 'Departments', 'permission' => 'department.view', 'href' => Illuminate\Support\Facades\Route::has('admin.departments.index') ? route('admin.departments.index') : '#', 'icon' => 'bi-diagram-3', 'active' => request()->routeIs('admin.departments.*')],
         ['label' => 'Designations', 'permission' => 'designation.view', 'href' => Illuminate\Support\Facades\Route::has('admin.designations.index') ? route('admin.designations.index') : '#', 'icon' => 'bi-award', 'active' => request()->routeIs('admin.designations.*')],
-        ['label' => 'Attendance', 'permission' => 'attendance.view', 'href' => '#', 'icon' => 'bi-calendar-check', 'active' => false],
+        ['label' => 'Attendance', 'permission' => 'attendance.view', 'href' => Illuminate\Support\Facades\Route::has('admin.attendance.index') ? route('admin.attendance.index') : '#', 'icon' => 'bi-calendar-check', 'active' => request()->routeIs('admin.attendance.*')],
         ['label' => 'Leave Management', 'permission' => 'leave.view', 'href' => '#', 'icon' => 'bi-calendar2-week', 'active' => false],
         ['label' => 'Payroll', 'permission' => 'payroll.view', 'href' => '#', 'icon' => 'bi-cash-stack', 'active' => false],
         ['label' => 'Reports', 'permission' => 'report.view', 'href' => '#', 'icon' => 'bi-bar-chart', 'active' => false],

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\DesignationController;
 use App\Http\Controllers\Admin\EmployeeController;
+use App\Http\Controllers\Admin\AttendanceController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -139,4 +140,28 @@ Route::middleware('auth')
         Route::delete('/employees/{employee}', [EmployeeController::class, 'destroy'])
             ->middleware('permission:employee.delete')
             ->name('employees.destroy');
+
+        Route::get('/attendance', [AttendanceController::class, 'index'])
+            ->middleware('permission:attendance.view')
+            ->name('attendance.index');
+
+        Route::get('/attendance/create', [AttendanceController::class, 'create'])
+            ->middleware('permission:attendance.create')
+            ->name('attendance.create');
+
+        Route::post('/attendance', [AttendanceController::class, 'store'])
+            ->middleware('permission:attendance.create')
+            ->name('attendance.store');
+
+        Route::get('/attendance/{attendance}/edit', [AttendanceController::class, 'edit'])
+            ->middleware('permission:attendance.update')
+            ->name('attendance.edit');
+
+        Route::put('/attendance/{attendance}', [AttendanceController::class, 'update'])
+            ->middleware('permission:attendance.update')
+            ->name('attendance.update');
+
+        Route::delete('/attendance/{attendance}', [AttendanceController::class, 'destroy'])
+            ->middleware('permission:attendance.delete')
+            ->name('attendance.destroy');
     });
