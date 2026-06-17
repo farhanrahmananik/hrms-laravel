@@ -8,29 +8,82 @@
     <title>@yield('title', config('app.name', 'Laravel'))</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --admin-sidebar-width: 280px;
+        }
+
+        body {
+            min-height: 100vh;
+        }
+
+        .admin-shell {
+            min-height: 100vh;
+        }
+
+        .admin-sidebar {
+            width: var(--admin-sidebar-width);
+            min-height: 100vh;
+        }
+
+        .admin-main {
+            min-width: 0;
+        }
+
+        .admin-content {
+            max-width: 1440px;
+        }
+
+        .sidebar-link {
+            color: rgba(255, 255, 255, .76);
+        }
+
+        .sidebar-link:hover,
+        .sidebar-link:focus,
+        .sidebar-link.active {
+            color: #fff;
+            background: rgba(255, 255, 255, .12);
+        }
+
+        .sidebar-section {
+            color: rgba(255, 255, 255, .48);
+            font-size: .72rem;
+            letter-spacing: .08em;
+        }
+    </style>
+
+    @stack('styles')
 </head>
 <body class="bg-body-tertiary">
-    <nav class="navbar navbar-expand-lg bg-white border-bottom">
-        <div class="container">
-            <a class="navbar-brand fw-semibold" href="{{ route('dashboard') }}">{{ config('app.name', 'HRMS') }}</a>
+    <div class="admin-shell d-flex">
+        <aside class="admin-sidebar d-none d-lg-flex flex-column bg-dark text-white">
+            @include('partials.sidebar')
+        </aside>
 
-            <div class="d-flex align-items-center gap-3 ms-auto">
-                <span class="text-body-secondary small">{{ auth()->user()->name }}</span>
-
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="btn btn-outline-secondary btn-sm">Logout</button>
-                </form>
+        <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="adminSidebar" aria-labelledby="adminSidebarLabel">
+            <div class="offcanvas-header border-bottom border-secondary">
+                <h5 class="offcanvas-title" id="adminSidebarLabel">{{ config('app.name', 'HRMS Laravel') }}</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body p-0">
+                @include('partials.sidebar')
             </div>
         </div>
-    </nav>
 
-    <main class="py-4">
-        <div class="container">
-            @yield('content')
+        <div class="admin-main flex-grow-1 d-flex flex-column">
+            @include('partials.navbar')
+
+            <main class="flex-grow-1 py-4">
+                <div class="admin-content container-fluid px-3 px-md-4 mx-auto">
+                    @yield('content')
+                </div>
+            </main>
         </div>
-    </main>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    @stack('scripts')
 </body>
 </html>
