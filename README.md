@@ -1,12 +1,89 @@
-# HRMS - Laravel
+# HRMS Laravel
 
-A production-style Human Resource Management System built with Laravel 12, MySQL, Bootstrap 5, jQuery, DataTables, and SweetAlert2.
+HRMS Laravel is a production-style Human Resource Management System built with Laravel 12. It demonstrates custom authentication, custom RBAC authorization, core HR module workflows, reporting, dashboard analytics, and automated feature testing in a clean portfolio-ready codebase.
 
-## Project Goal
+## Tech Stack
 
-The goal of this project is to build a complete HRMS application from scratch using Laravel best practices. The system will manage employees, departments, designations, attendance, leave requests, payroll records, dashboards, and reports.
+- PHP 8.x
+- Laravel 12
+- MySQL
+- Bootstrap 5
+- jQuery
+- DataTables
+- SweetAlert2
+- Git & GitHub
 
-This project is being developed as a portfolio-ready application with clean architecture, proper database design, maintainable code structure, and production-level development practices.
+## Core Features
+
+- Custom authentication
+- Custom role and permission management
+- Permission-protected admin panel
+- Employee management
+- Department management
+- Designation management
+- Attendance management
+- Leave management with approval/rejection workflow
+- Payroll management with net salary calculation
+- Dashboard overview with real stats
+- Read-only reports
+- Automated feature tests
+
+## Architecture Highlights
+
+- Custom RBAC instead of an external permission package
+- Thin controllers
+- Form Requests for validation
+- Service classes for business logic
+- Eloquent relationships between HRMS modules
+- Permission-based Blade UI visibility
+- Read-only reports separated from CRUD modules
+- Business rules covered by tests
+
+## Modules Completed
+
+- [x] Authentication & Authorization
+- [x] Role & Permission Management
+- [x] Department Management
+- [x] Designation Management
+- [x] Employee Management
+- [x] Attendance Management
+- [x] Leave Management
+- [x] Payroll Management
+- [x] Dashboard
+- [x] Reports
+- [x] Testing & Quality Review
+
+## Installation
+
+Configure the database connection in `.env` before running migrations.
+
+```bash
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate --seed
+php artisan serve
+```
+
+## Default Admin Account
+
+Local development seed account:
+
+- Email: `admin@example.com`
+- Password: `Password@12345`
+
+Security note: change this credential before production use.
+
+## Testing
+
+Latest test snapshot:
+
+```bash
+php artisan test
+```
+
+- 76 tests passed
+- 280 assertions
 
 ## Documentation
 
@@ -14,130 +91,32 @@ This project is being developed as a portfolio-ready application with clean arch
 - [Authentication & Authorization](docs/authentication-authorization.md)
 - [Testing & Quality Review](docs/testing-quality.md)
 
-## Technology Stack
-
-* PHP 8.x
-* Laravel 12
-* MySQL 8.x
-* Bootstrap 5
-* jQuery
-* DataTables
-* SweetAlert2
-* Vite
-* Git and GitHub
-
-## Core Modules
-
-* Authentication
-* Role and Permission Management
-* Employee Management
-* Department Management
-* Designation Management
-* Attendance Management
-* Leave Management
-* Payroll Management
-* Dashboard
-* Reports
-
-## Planned Roles
-
-* Super Admin
-* HR Manager
-* Employee
-
-## Development Principles
-
-* Clean code structure
-* Thin controllers
-* Form Request validation
-* Service classes for business logic when needed
-* Proper Eloquent relationships
-* Secure environment configuration
-* Migration-based database versioning
-* Git commit best practices
-* Production-aware architecture decisions
-
-## Current Status
-
-Project initialization is in progress.
-
-Completed:
-
-* Laravel 12 project installation
-* Git initialization
-* MySQL database connection
-* Laravel foundation migrations
-* Local development server test
-* Frontend dependency installation and build verification
-
-## Local Development Setup
-
-Clone the repository:
+## Useful Commands
 
 ```bash
-git clone <repository-url>
-cd hrms-laravel
+php artisan route:list -v --except-vendor
+php artisan about
+php artisan test
 ```
 
-Install PHP dependencies:
+## Future Enhancements
 
-```bash
-composer install
-```
+- PDF export
+- Excel export
+- Email notifications
+- Employee self-service portal
+- API integration
+- Advanced payroll rules
+- Audit logs
 
-Install frontend dependencies:
+## Production Notes
 
-```bash
-npm install
-```
-
-Copy environment file:
-
-```bash
-cp .env.example .env
-```
-
-Generate application key:
-
-```bash
-php artisan key:generate
-```
-
-Run migrations:
-
-```bash
-php artisan migrate
-```
-
-Start Laravel development server:
-
-```bash
-php artisan serve
-```
-
-Start frontend development server:
-
-```bash
-npm run dev
-```
-
-## Environment Notes
-
-The application uses MySQL as the primary database connection.
-
-Example database configuration:
-
-```env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=hrms_laravel
-DB_USERNAME=hrms_user
-DB_PASSWORD=
-```
-
-The real database password must be stored only in the local `.env` file and must never be committed to Git.
+- Set `APP_DEBUG=false` in production.
+- Do not commit `.env`.
+- Run config, route, and view cache during deployment.
+- Change default admin credentials.
+- Plan database backups before using real HR data.
 
 ## License
 
-This project is open-source and developed for educational and portfolio purposes.
+This project is for portfolio and educational purposes unless a `LICENSE` file is added.
