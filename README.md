@@ -12,6 +12,7 @@ This project is being developed as a portfolio-ready application with clean arch
 
 - [Database ERD](docs/database/erd.md)
 - [Authentication & Authorization](docs/authentication-authorization.md)
+- [Testing & Quality Review](docs/testing-quality.md)
 
 ## Technology Stack
 
