@@ -13,7 +13,7 @@
         ['label' => 'Attendance', 'permission' => 'attendance.view', 'href' => Illuminate\Support\Facades\Route::has('admin.attendance.index') ? route('admin.attendance.index') : '#', 'icon' => 'bi-calendar-check', 'active' => request()->routeIs('admin.attendance.*')],
         ['label' => 'Leave Management', 'permission' => 'leave.view', 'href' => Illuminate\Support\Facades\Route::has('admin.leaves.index') ? route('admin.leaves.index') : '#', 'icon' => 'bi-calendar2-week', 'active' => request()->routeIs('admin.leaves.*')],
         ['label' => 'Payroll', 'permission' => 'payroll.view', 'href' => Illuminate\Support\Facades\Route::has('admin.payrolls.index') ? route('admin.payrolls.index') : '#', 'icon' => 'bi-cash-stack', 'active' => request()->routeIs('admin.payrolls.*')],
-        ['label' => 'Reports', 'permission' => 'report.view', 'href' => '#', 'icon' => 'bi-bar-chart', 'active' => false],
+        ['label' => 'Reports', 'permission' => 'report.view', 'href' => Illuminate\Support\Facades\Route::has('admin.reports.index') ? route('admin.reports.index') : '#', 'icon' => 'bi-bar-chart', 'active' => request()->routeIs('admin.reports.*')],
     ];
 @endphp
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\LeaveRequestController;
 use App\Http\Controllers\Admin\PayrollController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DashboardController;
@@ -222,4 +223,24 @@ Route::middleware('auth')
         Route::delete('/payrolls/{payroll}', [PayrollController::class, 'destroy'])
             ->middleware('permission:payroll.delete')
             ->name('payrolls.destroy');
+
+        Route::get('/reports', [ReportController::class, 'index'])
+            ->middleware('permission:report.view')
+            ->name('reports.index');
+
+        Route::get('/reports/employees', [ReportController::class, 'employees'])
+            ->middleware('permission:report.view')
+            ->name('reports.employees');
+
+        Route::get('/reports/attendance', [ReportController::class, 'attendance'])
+            ->middleware('permission:report.view')
+            ->name('reports.attendance');
+
+        Route::get('/reports/leaves', [ReportController::class, 'leaves'])
+            ->middleware('permission:report.view')
+            ->name('reports.leaves');
+
+        Route::get('/reports/payrolls', [ReportController::class, 'payrolls'])
+            ->middleware('permission:report.view')
+            ->name('reports.payrolls');
     });
