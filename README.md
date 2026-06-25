@@ -28,6 +28,20 @@ HRMS Laravel is a production-style Human Resource Management System built with L
 - Read-only reports
 - Automated feature tests
 
+## Screenshots
+
+### Dashboard
+
+<p align="center">
+  <img src="docs/screenshots/hrms-dashboard.png" alt="HRMS Laravel dashboard screenshot" width="900">
+</p>
+
+### Login
+
+<p align="center">
+  <img src="docs/screenshots/hrms-login.png" alt="HRMS Laravel login screenshot" width="900">
+</p>
+
 ## Architecture Highlights
 
 - Custom RBAC instead of an external permission package
