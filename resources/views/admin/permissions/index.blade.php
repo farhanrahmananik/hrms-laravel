@@ -49,9 +49,8 @@
                                     @endphp
                                     <tr>
                                         <td class="text-body-secondary">{{ $permission->id }}</td>
-                                        <td>
+                                        <td title="{{ $permission->slug ?: $permission->name }}">
                                             <span class="fw-semibold">{{ $permission->name }}</span>
-                                            <span class="d-block small text-body-secondary">{{ $permission->slug }}</span>
                                         </td>
                                         <td>
                                             <span class="badge bg-primary-subtle text-primary border border-primary-subtle">
