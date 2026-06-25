@@ -68,9 +68,8 @@
                                                 class="form-check-input @error('permissions') is-invalid @enderror @error('permissions.*') is-invalid @enderror"
                                                 @checked(in_array($permission->id, $selectedPermissionIds, true))
                                             >
-                                            <label class="form-check-label" for="permission-{{ $permission->id }}">
+                                            <label class="form-check-label" for="permission-{{ $permission->id }}" title="{{ $permission->slug ?: $permission->name }}">
                                                 <span class="fw-semibold">{{ $permission->name }}</span>
-                                                <span class="d-block small text-body-secondary">{{ $permission->slug }}</span>
                                             </label>
                                         </div>
                                     </div>

@@ -38,7 +38,8 @@ class PermissionManagementTest extends TestCase
             ->get(route('admin.permissions.index'))
             ->assertOk()
             ->assertSeeText('Permissions')
-            ->assertSeeText('dashboard.view');
+            ->assertSeeText('Dashboard View')
+            ->assertDontSeeText('dashboard.view');
     }
 
     public function test_permissions_page_is_read_only(): void
