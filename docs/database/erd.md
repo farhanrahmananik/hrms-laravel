@@ -123,466 +123,226 @@ salary\_components 1 to many payslip\_items
 
 
 ```mermaid
-
 erDiagram
-
-
-
-&#x20;   USERS {
-
-&#x20;       bigint id PK
-
-&#x20;       string name
-
-&#x20;       string email
-
-&#x20;       string password
-
-&#x20;       string status
-
-&#x20;       timestamp email\_verified\_at
-
-&#x20;       timestamp created\_at
-
-&#x20;       timestamp updated\_at
-
-&#x20;   }
-
-
-
-&#x20;   ROLES {
-
-&#x20;       bigint id PK
-
-&#x20;       string name
-
-&#x20;       string slug
-
-&#x20;       string description
-
-&#x20;       boolean is\_active
-
-&#x20;       timestamp created\_at
-
-&#x20;       timestamp updated\_at
-
-&#x20;       timestamp deleted\_at
-
-&#x20;   }
-
-
-
-&#x20;   PERMISSIONS {
-
-&#x20;       bigint id PK
-
-&#x20;       string name
-
-&#x20;       string slug
-
-&#x20;       string description
-
-&#x20;       boolean is\_active
-
-&#x20;       timestamp created\_at
-
-&#x20;       timestamp updated\_at
-
-&#x20;       timestamp deleted\_at
-
-&#x20;   }
-
-
-
-&#x20;   ROLE\_USER {
-
-&#x20;       bigint id PK
-
-&#x20;       bigint user\_id FK
-
-&#x20;       bigint role\_id FK
-
-&#x20;       timestamp created\_at
-
-&#x20;       timestamp updated\_at
-
-&#x20;   }
-
-
-
-&#x20;   PERMISSION\_ROLE {
-
-&#x20;       bigint id PK
-
-&#x20;       bigint role\_id FK
-
-&#x20;       bigint permission\_id FK
-
-&#x20;       timestamp created\_at
-
-&#x20;       timestamp updated\_at
-
-&#x20;   }
-
-
-
-&#x20;   DEPARTMENTS {
-
-&#x20;       bigint id PK
-
-&#x20;       string name
-
-&#x20;       string code
-
-&#x20;       string description
-
-&#x20;       boolean is\_active
-
-&#x20;       timestamp created\_at
-
-&#x20;       timestamp updated\_at
-
-&#x20;       timestamp deleted\_at
-
-&#x20;   }
-
-
-
-&#x20;   DESIGNATIONS {
-
-&#x20;       bigint id PK
-
-&#x20;       bigint department\_id FK
-
-&#x20;       string title
-
-&#x20;       string code
-
-&#x20;       string description
-
-&#x20;       boolean is\_active
-
-&#x20;       timestamp created\_at
-
-&#x20;       timestamp updated\_at
-
-&#x20;       timestamp deleted\_at
-
-&#x20;   }
-
-
-
-&#x20;   EMPLOYEES {
-
-&#x20;       bigint id PK
-
-&#x20;       bigint user\_id FK
-
-&#x20;       bigint department\_id FK
-
-&#x20;       bigint designation\_id FK
-
-&#x20;       string employee\_code
-
-&#x20;       string phone
-
-&#x20;       string gender
-
-&#x20;       date date\_of\_birth
-
-&#x20;       date joining\_date
-
-&#x20;       string employment\_status
-
-&#x20;       timestamp created\_at
-
-&#x20;       timestamp updated\_at
-
-&#x20;       timestamp deleted\_at
-
-&#x20;   }
-
-
-
-&#x20;   ATTENDANCES {
-
-&#x20;       bigint id PK
-
-&#x20;       bigint employee\_id FK
-
-&#x20;       date attendance\_date
-
-&#x20;       time check\_in
-
-&#x20;       time check\_out
-
-&#x20;       string status
-
-&#x20;       text remarks
-
-&#x20;       timestamp created\_at
-
-&#x20;       timestamp updated\_at
-
-&#x20;       timestamp deleted\_at
-
-&#x20;   }
-
-
-
-&#x20;   LEAVE\_TYPES {
-
-&#x20;       bigint id PK
-
-&#x20;       string name
-
-&#x20;       string code
-
-&#x20;       int default\_days
-
-&#x20;       boolean is\_active
-
-&#x20;       timestamp created\_at
-
-&#x20;       timestamp updated\_at
-
-&#x20;       timestamp deleted\_at
-
-&#x20;   }
-
-
-
-&#x20;   LEAVE\_REQUESTS {
-
-&#x20;       bigint id PK
-
-&#x20;       bigint employee\_id FK
-
-&#x20;       bigint leave\_type\_id FK
-
-&#x20;       date start\_date
-
-&#x20;       date end\_date
-
-&#x20;       decimal total\_days
-
-&#x20;       string status
-
-&#x20;       text reason
-
-&#x20;       bigint approved\_by
-
-&#x20;       timestamp approved\_at
-
-&#x20;       timestamp created\_at
-
-&#x20;       timestamp updated\_at
-
-&#x20;       timestamp deleted\_at
-
-&#x20;   }
-
-
-
-&#x20;   LEAVE\_BALANCES {
-
-&#x20;       bigint id PK
-
-&#x20;       bigint employee\_id FK
-
-&#x20;       bigint leave\_type\_id FK
-
-&#x20;       int year
-
-&#x20;       decimal total\_days
-
-&#x20;       decimal used\_days
-
-&#x20;       decimal remaining\_days
-
-&#x20;       timestamp created\_at
-
-&#x20;       timestamp updated\_at
-
-&#x20;       timestamp deleted\_at
-
-&#x20;   }
-
-
-
-&#x20;   SALARY\_COMPONENTS {
-
-&#x20;       bigint id PK
-
-&#x20;       string name
-
-&#x20;       string code
-
-&#x20;       string type
-
-&#x20;       boolean is\_taxable
-
-&#x20;       boolean is\_active
-
-&#x20;       timestamp created\_at
-
-&#x20;       timestamp updated\_at
-
-&#x20;       timestamp deleted\_at
-
-&#x20;   }
-
-
-
-&#x20;   EMPLOYEE\_SALARY\_STRUCTURES {
-
-&#x20;       bigint id PK
-
-&#x20;       bigint employee\_id FK
-
-&#x20;       bigint salary\_component\_id FK
-
-&#x20;       decimal amount
-
-&#x20;       date effective\_from
-
-&#x20;       date effective\_to
-
-&#x20;       boolean is\_active
-
-&#x20;       timestamp created\_at
-
-&#x20;       timestamp updated\_at
-
-&#x20;       timestamp deleted\_at
-
-&#x20;   }
-
-
-
-&#x20;   PAYROLL\_RUNS {
-
-&#x20;       bigint id PK
-
-&#x20;       int payroll\_month
-
-&#x20;       int payroll\_year
-
-&#x20;       date payment\_date
-
-&#x20;       string status
-
-&#x20;       timestamp processed\_at
-
-&#x20;       timestamp created\_at
-
-&#x20;       timestamp updated\_at
-
-&#x20;       timestamp deleted\_at
-
-&#x20;   }
-
-
-
-&#x20;   PAYSLIPS {
-
-&#x20;       bigint id PK
-
-&#x20;       bigint payroll\_run\_id FK
-
-&#x20;       bigint employee\_id FK
-
-&#x20;       decimal gross\_salary
-
-&#x20;       decimal total\_deductions
-
-&#x20;       decimal net\_salary
-
-&#x20;       string status
-
-&#x20;       timestamp created\_at
-
-&#x20;       timestamp updated\_at
-
-&#x20;       timestamp deleted\_at
-
-&#x20;   }
-
-
-
-&#x20;   PAYSLIP\_ITEMS {
-
-&#x20;       bigint id PK
-
-&#x20;       bigint payslip\_id FK
-
-&#x20;       bigint salary\_component\_id FK
-
-&#x20;       decimal amount
-
-&#x20;       string type
-
-&#x20;       timestamp created\_at
-
-&#x20;       timestamp updated\_at
-
-&#x20;   }
-
-
-
-&#x20;   USERS ||--o{ ROLE\_USER : "assigned roles"
-
-&#x20;   ROLES ||--o{ ROLE\_USER : "assigned users"
-
-
-
-&#x20;   ROLES ||--o{ PERMISSION\_ROLE : "has permissions"
-
-&#x20;   PERMISSIONS ||--o{ PERMISSION\_ROLE : "belongs to roles"
-
-
-
-&#x20;   USERS ||--o| EMPLOYEES : "has employee profile"
-
-
-
-&#x20;   DEPARTMENTS ||--o{ DESIGNATIONS : "has designations"
-
-&#x20;   DEPARTMENTS ||--o{ EMPLOYEES : "has employees"
-
-&#x20;   DESIGNATIONS ||--o{ EMPLOYEES : "assigned to employees"
-
-
-
-&#x20;   EMPLOYEES ||--o{ ATTENDANCES : "has attendance records"
-
-
-
-&#x20;   EMPLOYEES ||--o{ LEAVE\_REQUESTS : "submits leave requests"
-
-&#x20;   LEAVE\_TYPES ||--o{ LEAVE\_REQUESTS : "used in leave requests"
-
-
-
-&#x20;   EMPLOYEES ||--o{ LEAVE\_BALANCES : "has leave balances"
-
-&#x20;   LEAVE\_TYPES ||--o{ LEAVE\_BALANCES : "has leave balances"
-
-
-
-&#x20;   EMPLOYEES ||--o{ EMPLOYEE\_SALARY\_STRUCTURES : "has salary structures"
-
-&#x20;   SALARY\_COMPONENTS ||--o{ EMPLOYEE\_SALARY\_STRUCTURES : "used in salary structures"
-
-
-
-&#x20;   PAYROLL\_RUNS ||--o{ PAYSLIPS : "generates payslips"
-
-&#x20;   EMPLOYEES ||--o{ PAYSLIPS : "receives payslips"
-
-
-
-&#x20;   PAYSLIPS ||--o{ PAYSLIP\_ITEMS : "has payslip items"
-
-&#x20;   SALARY\_COMPONENTS ||--o{ PAYSLIP\_ITEMS : "used in payslip items"
+    USERS {
+        bigint id PK
+        string name
+        string email
+        string password
+        string status
+        timestamp email_verified_at
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    ROLES {
+        bigint id PK
+        string name
+        string slug
+        string description
+        boolean is_active
+        timestamp created_at
+        timestamp updated_at
+        timestamp deleted_at
+    }
+
+    PERMISSIONS {
+        bigint id PK
+        string name
+        string slug
+        string description
+        boolean is_active
+        timestamp created_at
+        timestamp updated_at
+        timestamp deleted_at
+    }
+
+    ROLE_USER {
+        bigint id PK
+        bigint user_id FK
+        bigint role_id FK
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    PERMISSION_ROLE {
+        bigint id PK
+        bigint role_id FK
+        bigint permission_id FK
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    DEPARTMENTS {
+        bigint id PK
+        string name
+        string code
+        string description
+        boolean is_active
+        timestamp created_at
+        timestamp updated_at
+        timestamp deleted_at
+    }
+
+    DESIGNATIONS {
+        bigint id PK
+        bigint department_id FK
+        string title
+        string code
+        string description
+        boolean is_active
+        timestamp created_at
+        timestamp updated_at
+        timestamp deleted_at
+    }
+
+    EMPLOYEES {
+        bigint id PK
+        bigint user_id FK
+        bigint department_id FK
+        bigint designation_id FK
+        string employee_code
+        string phone
+        string gender
+        date date_of_birth
+        date joining_date
+        string employment_status
+        timestamp created_at
+        timestamp updated_at
+        timestamp deleted_at
+    }
+
+    ATTENDANCES {
+        bigint id PK
+        bigint employee_id FK
+        date attendance_date
+        time check_in
+        time check_out
+        string status
+        text remarks
+        timestamp created_at
+        timestamp updated_at
+        timestamp deleted_at
+    }
+
+    LEAVE_TYPES {
+        bigint id PK
+        string name
+        string code
+        int default_days
+        boolean is_active
+        timestamp created_at
+        timestamp updated_at
+        timestamp deleted_at
+    }
+
+    LEAVE_REQUESTS {
+        bigint id PK
+        bigint employee_id FK
+        bigint leave_type_id FK
+        date start_date
+        date end_date
+        decimal total_days
+        string status
+        text reason
+        bigint approved_by
+        timestamp approved_at
+        timestamp created_at
+        timestamp updated_at
+        timestamp deleted_at
+    }
+
+    LEAVE_BALANCES {
+        bigint id PK
+        bigint employee_id FK
+        bigint leave_type_id FK
+        int year
+        decimal total_days
+        decimal used_days
+        decimal remaining_days
+        timestamp created_at
+        timestamp updated_at
+        timestamp deleted_at
+    }
+
+    SALARY_COMPONENTS {
+        bigint id PK
+        string name
+        string code
+        string type
+        boolean is_taxable
+        boolean is_active
+        timestamp created_at
+        timestamp updated_at
+        timestamp deleted_at
+    }
+
+    EMPLOYEE_SALARY_STRUCTURES {
+        bigint id PK
+        bigint employee_id FK
+        bigint salary_component_id FK
+        decimal amount
+        date effective_from
+        date effective_to
+        boolean is_active
+        timestamp created_at
+        timestamp updated_at
+        timestamp deleted_at
+    }
+
+    PAYROLL_RUNS {
+        bigint id PK
+        int payroll_month
+        int payroll_year
+        date payment_date
+        string status
+        timestamp processed_at
+        timestamp created_at
+        timestamp updated_at
+        timestamp deleted_at
+    }
+
+    PAYSLIPS {
+        bigint id PK
+        bigint payroll_run_id FK
+        bigint employee_id FK
+        decimal gross_salary
+        decimal total_deductions
+        decimal net_salary
+        string status
+        timestamp created_at
+        timestamp updated_at
+        timestamp deleted_at
+    }
+
+    PAYSLIP_ITEMS {
+        bigint id PK
+        bigint payslip_id FK
+        bigint salary_component_id FK
+        decimal amount
+        string type
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    USERS ||--o{ ROLE_USER : "assigned roles"
+    ROLES ||--o{ ROLE_USER : "assigned users"
+    ROLES ||--o{ PERMISSION_ROLE : "has permissions"
+    PERMISSIONS ||--o{ PERMISSION_ROLE : "belongs to roles"
+    USERS ||--o| EMPLOYEES : "has employee profile"
+    DEPARTMENTS ||--o{ DESIGNATIONS : "has designations"
+    DEPARTMENTS ||--o{ EMPLOYEES : "has employees"
+    DESIGNATIONS ||--o{ EMPLOYEES : "assigned to employees"
+    EMPLOYEES ||--o{ ATTENDANCES : "has attendance records"
+    EMPLOYEES ||--o{ LEAVE_REQUESTS : "submits leave requests"
+    LEAVE_TYPES ||--o{ LEAVE_REQUESTS : "used in leave requests"
+    EMPLOYEES ||--o{ LEAVE_BALANCES : "has leave balances"
+    LEAVE_TYPES ||--o{ LEAVE_BALANCES : "has leave balances"
+    EMPLOYEES ||--o{ EMPLOYEE_SALARY_STRUCTURES : "has salary structures"
+    SALARY_COMPONENTS ||--o{ EMPLOYEE_SALARY_STRUCTURES : "used in salary structures"
+    PAYROLL_RUNS ||--o{ PAYSLIPS : "generates payslips"
+    EMPLOYEES ||--o{ PAYSLIPS : "receives payslips"
+    PAYSLIPS ||--o{ PAYSLIP_ITEMS : "has payslip items"
+    SALARY_COMPONENTS ||--o{ PAYSLIP_ITEMS : "used in payslip items"
+```
 
